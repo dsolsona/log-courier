@@ -355,13 +355,15 @@ stack when it was reset.
 
 *Array of Strings. Required*
 
-Sets the list of servers to send logs to. DNS names are resolved into IP
-addresses each time connections are made and all available IP addresses are
-used.
+Sets the list of servers to send logs to. Accepted formats for each server entry are:
 
-Only the initial server is randomly selected. Subsequent connection attempts are
-made to the next IP address available (if the server had multiple IP addresses)
-or to the next server listed in the configuration file (if all addresses for the
+* `ipaddress:port`
+* `hostname:port` (A DNS lookup is performed)
+* `@hostname` (A SRV DNS lookup is performed, with further DNS lookups if required)
+
+The initial server is randomly selected. Subsequent connection attempts are made
+to the next IP address available (if the server had multiple IP addresses) or to
+the next server listed in the configuration file (if all addresses for the
 previous server were exausted.)
 
 ### `"ssl ca"`
